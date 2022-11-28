@@ -1,0 +1,28 @@
+@model IEnumerable<Interclasse.Models.Esporte>
+@{
+    ViewData["Title"] = "Esporte";
+}
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Particiantes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var esporte in Model)
+        {
+            <tr>
+                <td>@esporte.Id</td>
+                <td>@esporte.Nome</td>
+                <td>@esporte.Participantes</td>
+                <td>
+                    <a class="btn btn-outline-info" asp-controller="esporte" asp-action="Show" asp-route-id="@esporte.Id">Visualizar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

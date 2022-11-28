@@ -1,0 +1,40 @@
+@model IEnumerable<Interclasse.Models.Atleta>
+@{
+    ViewData["Title"] = "Atleta";
+}
+<h1>@ViewData["Title"]</h1>
+
+@if(Model.Count() == 0)
+{
+    <p>Nenhum há atletas cadastrados</p>
+    <a class="btn" asp-controller="Atleta" asp-action="Cadastrar">Cadastre um novo atleta</a>
+}
+else
+{
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Esporte</th>
+                <th>Numero</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var atleta in Model)
+            {
+                <tr>
+                    <td>@atleta.Id</td>
+                    <td>@atleta.Nome</td>
+                    <td>@atleta.Esporte</td>
+                    <td>@atleta.Numero</td>
+                    <td>
+                        <a class="btn btn-outline-info" asp-controller="Atleta" asp-action="Show" asp-route-id="@atleta.Id">Ver</a>
+                        <a class="btn btn-outline-danger" asp-controller="Atleta" asp-action="Delete" asp-route-id="@atleta.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn" asp-controller="Atleta" asp-action="Cadastrar">Cadastre um novo atleta</a>
+}

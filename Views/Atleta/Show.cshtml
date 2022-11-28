@@ -1,0 +1,10 @@
+@model Interclasse.Models.Atleta
+@{
+    ViewData["Title"] = $"Atleta {Model.Nome}";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p><b>Id: </b>@Model.Id</p>
+<p><b>Nome: </b>@Model.Nome</p>
+<p><b>Esporte: </b>@Model.Esporte</p>
+<p><b>Numero: </b>@Model.Numero</p>

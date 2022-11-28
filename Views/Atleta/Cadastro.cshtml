@@ -1,0 +1,27 @@
+@model Interclasse.Models.Atleta
+
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<form class="form" id="form" asp-controller="Atleta" asp-action="Cadastrar" method="POST">
+    <label for="Nome">Nome: </label>
+    <input type="text" id="Nome" name="Nome" asp-for="@Model.Nome">
+    <span asp-validation-for="@Model.Nome" class="text-danger"></span>
+
+    <label for="Esporte">Esporte: </label>
+    <select name="Esporte" id="Esporte" asp-for="@Model.Esporte">
+        <option value="Volei">Volei</option>
+        <option value="Futebol">Futebol</option>
+        <option value="Basquete">Basquete</option>
+    </select>
+    <span asp-validation-for="@Model.Esporte" class="text-danger"></span>
+
+    <label for="Numero">Numero: </label>
+    <input type="number" id="Numero" name="Numero" asp-for="@Model.Numero">
+    <span asp-validation-for="@Model.Numero" class="text-danger"></span>
+
+    <input type="submit" value="Cadastrar">
+</form>
+
+    

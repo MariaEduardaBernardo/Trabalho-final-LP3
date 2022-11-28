@@ -1,0 +1,39 @@
+@model IEnumerable<Interclasse.Models.Time>
+@{
+    ViewData["Title"] = "Times";
+}
+<h1>@ViewData["Title"]</h1>
+
+@if(Model.Count() == 0)
+{
+    <p>Não há nenhum time cadastrado</p>
+    <a class="btn" asp-controller="Time" asp-action="Cadastrar">Cadastrar um novo time</a>
+}
+else
+{
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Estado</th>
+                <th>Tecnico</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var time in Model)
+            {
+                <tr>
+                    <td>@time.Id</td>
+                    <td>@time.Estado</td>
+                    <td>@time.Tecnico</td>
+                    <td>
+                        <a class="btn btn-outline-info" asp-controller="Time" asp-action="Show" asp-route-id="@time.Id">Ver</a>
+                        <a class="btn btn-outline-light" asp-controller="Time" asp-action="Update" asp-route-id="@time.Id">Update</a>
+                        <a class="btn btn-outline-danger" asp-controller="Time" asp-action="Delete" asp-route-id="@time.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn" asp-controller="Time" asp-action="Cadastrar">Cadastrar um novo time</a>
+}
