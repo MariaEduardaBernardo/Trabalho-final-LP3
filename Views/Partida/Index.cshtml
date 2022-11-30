@@ -1,0 +1,41 @@
+@model IEnumerable<Interclasse.Models.Partida>
+@{
+    ViewData["Title"] = "Partida";
+}
+<h1>@ViewData["Title"]</h1>
+
+@if(Model.Count() == 0)
+{
+    <p>Nenhum há partidas marcadas</p>
+    <a class="btn" asp-controller="Partida" asp-action="Cadastrar">Marque uma nova partida</a>
+}
+else
+{
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Local</th>
+                <th>Hora</th>
+                <th>Esporte</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var partida in Model)
+            {
+                <tr>
+                    <td>@partida.Id</td>
+                    <td>@partida.Local</td>
+                    <td>@partida.Hora</td>
+                    <td>@partida.Esporte</td>
+                    
+                    <td>
+                        <a class="btn btn-outline-info" asp-controller="Partida" asp-action="Show" asp-route-id="@partida.Id">Ver</a>
+                        <a class="btn btn-outline-danger" asp-controller="Partida" asp-action="Delete" asp-route-id="@partida.Id">Deletar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn" asp-controller="Partida" asp-action="Cadastrar">Marque uma nova partida</a>
+}

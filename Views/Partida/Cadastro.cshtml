@@ -1,0 +1,27 @@
+@model Interclasse.Models.Partida
+
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<form class="form" id="form" asp-controller="Juiz" asp-action="Cadastrar" method="POST">
+    <label for="Local">Local: </label>
+    <input type="text" id="Local" name="Local" asp-for="@Model.Local">
+    <span asp-validation-for="@Model.Local" class="text-danger"></span>
+
+    <label for="Hora">Hora: </label>
+    <input type="number" id="Hora" name="Hora" asp-for="@Model.Hora">
+    <span asp-validation-for="@Model.Hora" class="text-danger"></span>
+
+    <label for="Esporte">Esporte: </label>
+    <select name="Esporte" id="Esporte" asp-for="@Model.Esporte">
+        <option value="Volei">Volei</option>
+        <option value="Futebol">Futebol</option>
+        <option value="Basquete">Basquete</option>
+    </select>
+    <span asp-validation-for="@Model.Esporte" class="text-danger"></span>
+
+    <input type="submit" value="Cadastrar">
+</form>
+
+    

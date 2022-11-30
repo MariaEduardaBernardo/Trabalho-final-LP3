@@ -1,0 +1,39 @@
+@model IEnumerable<Interclasse.Models.Quadra>
+@{
+    ViewData["Title"] = "Quadras";
+}
+<h1>@ViewData["Title"]</h1>
+
+@if(Model.Count() == 0)
+{
+    <p>Não há nenhuma quadra cadastrado</p>
+    <a class="btn" asp-controller="Quadra" asp-action="Cadastrar">Cadastrar uma nova quadra</a>
+}
+else
+{
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numero</th>
+                <th>Esporte</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var quadra in Model)
+            {
+                <tr>
+                    <td>@quadra.Id</td>
+                    <td>@quadra.Numero</td>
+                    <td>@quadra.Esporte</td>
+                    <td>
+                        <a class="btn btn-outline-info" asp-controller="Quadra" asp-action="Show" asp-route-id="@quadra.Id">Ver</a>
+                        <a class="btn btn-outline-light" asp-controller="Quadra" asp-action="Update" asp-route-id="@quadra.Id">Update</a>
+                        <a class="btn btn-outline-danger" asp-controller="Quadra" asp-action="Delete" asp-route-id="@quadra.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn" asp-controller="Quadra" asp-action="Cadastrar">Cadastrar uma nova quadra</a>
+}

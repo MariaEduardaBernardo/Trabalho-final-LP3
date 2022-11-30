@@ -1,0 +1,29 @@
+@model Interclasse.Models.Partida
+
+@{
+    ViewData["Title"] = "Atualizar dados da partida";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Utilize o formulário para atualizar os dados da partida</p>
+
+<form class="form" asp-controller="Partida" asp-action="Update" asp-route-id="@Model.Id" method="POST">
+    
+    <label for="Local">Local</label>
+    <input type="text" id="Local" value="@Model.Local" name="Local" asp-for="@Model.Local">
+    <span asp-validation-for="@Model.Local" class="text-danger"></span>
+
+    <label for="Hora">Hora</label>
+    <input type="number" id="Hora" value="@Model.Hora" name="Hora" asp-for="@Model.Hora">
+    <span asp-validation-for="@Model.Hora" class="text-danger"></span>
+    
+    <label for="Esporte">Esporte</label>
+    <select name="Esporte" id="Esporte" value="@Model.Esporte" asp-for="@Model.Esporte">
+        <option value="Volei">Volei</option>
+        <option value="Futebol">Futebol</option>
+        <option value="Basquete">Basquete</option>
+    </select>
+    <span asp-validation-for="@Model.Esporte" class="text-danger"></span>
+
+    <input class="submit" type="submit" value="Atualizar">
+</form>

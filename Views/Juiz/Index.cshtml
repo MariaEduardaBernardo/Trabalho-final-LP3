@@ -1,0 +1,40 @@
+@model IEnumerable<Interclasse.Models.Juiz>
+@{
+    ViewData["Title"] = "Juiz";
+}
+<h1>@ViewData["Title"]</h1>
+
+@if(Model.Count() == 0)
+{
+    <p>Nenhum há juizes cadastrados</p>
+    <a class="btn" asp-controller="Juiz" asp-action="Cadastrar">Cadastre um(a) novo juiz</a>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Esporte</th>
+                <th>Quadra</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var juiz in Model)
+            {
+                <tr>
+                    <td>@juiz.Id</td>
+                    <td>@juiz.Nome</td>
+                    <td>@juiz.Esporte</td>
+                    <td>@juiz.Quadra</td>
+                    <td>
+                        <a class="btn btn-outline-info" asp-controller="Juiz" asp-action="Show" asp-route-id="@juiz.Id">Ver</a>
+                        <a class="btn btn-outline-danger" asp-controller="Juiz" asp-action="Delete" asp-route-id="@juiz.Id">Deletar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn" asp-controller="Juiz" asp-action="Cadastrar">Cadastre um(a) novo juiz</a>
+}
