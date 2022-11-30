@@ -3,29 +3,29 @@ using Interclasse.Models;
 
 namespace Interclasse.Controllers;
 
-public class AtletaController : Controller 
+public class PartidaController : Controller 
 {
     private readonly InterclasseContext _context;
 
-    public AtletaController(InterclasseContext context)
+    public PartidaController(InterclasseContext context)
     {
         _context = context;
     }
     public IActionResult Index()
     {
-        return View(_context.Atleta);
+        return View(_context.Partida);
     }
 
     public IActionResult Show(int id)
     {
-        Atleta atleta = _context.Atleta.Find(id);
+        Partida partida = _context.Partida.Find(id);
 
-        if(atleta == null)
+        if(partida == null)
         {
             return NotFound();
         }
 
-        return View(atleta);
+        return View(partida);
     }
 
     [HttpGet]
@@ -35,14 +35,14 @@ public class AtletaController : Controller
     }
 
     [HttpPost]
-    public IActionResult Cadastrar(Atleta atleta)
+    public IActionResult Cadastrar(Partida partida)
     {
         if(!ModelState.IsValid) 
         {
-            return View(atleta);
+            return View(partida);
         }
 
-        _context.Atleta.Add(atleta);
+        _context.Partida.Add(partida);
         _context.SaveChanges();
         return RedirectToAction("Index");
     }
@@ -50,45 +50,46 @@ public class AtletaController : Controller
     [HttpGet]
     public IActionResult Update(int id)
     {
-        Atleta atleta = _context.Atleta.Find(id);
+        Partida partida = _context.Partida.Find(id);
 
-        if(atleta == null)
+        if(partida == null)
         {
             return NotFound();
         }
 
-        return View(atleta);
+        return View(partida);
     }
 
     [HttpPost]
-    public IActionResult Update(Atleta atleta, int id)
+    public IActionResult Update(Partida partida, int id)
     {
         if(!ModelState.IsValid) 
         {
-            return View(atleta);
+            return View(partida);
         }
 
-        Atleta updateAtleta = _context.Atleta.Find(atleta.Id);
+        Partida updatePartida = _context.partida.Find(partida.Id);
+    
+        updatePartida.Local = partida.Local;
+        updatePartida.Hora = partida.Hora;
+        updatePartida.Esporte = partida.esporte;
         
-        updateAtleta.Nome = atleta.Nome;
-        updateAtleta.Esporte = atleta.Esporte;
-        updateAtleta.Numero = atleta.Numero;
 
-        _context.Atleta.Update(updateAtleta);
+        _context.Partida.Update(updatePartida);
         _context.SaveChanges();
         return RedirectToAction("Index");
     }
 
     public IActionResult Delete(int id)
     {
-        Atleta atleta = _context.Atleta.Find(id);
+        Partida partida = _context.Partida.Find(id);
 
-        if(atleta == null)
+        if(partida == null)
         {
             return NotFound();
         }
         
-        _context.Atleta.Remove(_context.Atleta.Find(id));
+        _context.Partida.Remove(_context.Partida.Find(id));
         _context.SaveChanges();
 
         return RedirectToAction("Index");

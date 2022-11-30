@@ -3,29 +3,29 @@ using Interclasse.Models;
 
 namespace Interclasse.Controllers;
 
-public class AtletaController : Controller 
+public class JuizController : Controller 
 {
     private readonly InterclasseContext _context;
 
-    public AtletaController(InterclasseContext context)
+    public JuizController(InterclasseContext context)
     {
         _context = context;
     }
     public IActionResult Index()
     {
-        return View(_context.Atleta);
+        return View(_context.Juiz);
     }
 
     public IActionResult Show(int id)
     {
-        Atleta atleta = _context.Atleta.Find(id);
+        Juiz juiz = _context.Juiz.Find(id);
 
-        if(atleta == null)
+        if(juiz == null)
         {
             return NotFound();
         }
 
-        return View(atleta);
+        return View(juiz);
     }
 
     [HttpGet]
@@ -35,14 +35,14 @@ public class AtletaController : Controller
     }
 
     [HttpPost]
-    public IActionResult Cadastrar(Atleta atleta)
+    public IActionResult Cadastrar(Juiz juiz)
     {
         if(!ModelState.IsValid) 
         {
-            return View(atleta);
+            return View(juiz);
         }
 
-        _context.Atleta.Add(atleta);
+        _context.Juiz.Add(juiz);
         _context.SaveChanges();
         return RedirectToAction("Index");
     }
@@ -50,45 +50,45 @@ public class AtletaController : Controller
     [HttpGet]
     public IActionResult Update(int id)
     {
-        Atleta atleta = _context.Atleta.Find(id);
+        Juiz juiz = _context.Juiz.Find(id);
 
-        if(atleta == null)
+        if(juiz == null)
         {
             return NotFound();
         }
 
-        return View(atleta);
+        return View(juiz);
     }
 
     [HttpPost]
-    public IActionResult Update(Atleta atleta, int id)
+    public IActionResult Update(Juiz juiz, int id)
     {
         if(!ModelState.IsValid) 
         {
-            return View(atleta);
+            return View(juiz);
         }
 
-        Atleta updateAtleta = _context.Atleta.Find(atleta.Id);
+        Juiz updateJuiz = _context.juiz.Find(juiz.Id);
+    
+        updateJuiz.Nome = juiz.Nome;
+        updateJuiz.Esporte = juiz.esporte;
+        updateJuiz.Quadra = juiz.Quadra;
         
-        updateAtleta.Nome = atleta.Nome;
-        updateAtleta.Esporte = atleta.Esporte;
-        updateAtleta.Numero = atleta.Numero;
-
-        _context.Atleta.Update(updateAtleta);
+        _context.Juiz.Update(updateJuiz);
         _context.SaveChanges();
         return RedirectToAction("Index");
     }
 
     public IActionResult Delete(int id)
     {
-        Atleta atleta = _context.Atleta.Find(id);
+        Juiz juiz = _context.Juiz.Find(id);
 
-        if(atleta == null)
+        if(juiz == null)
         {
             return NotFound();
         }
         
-        _context.Atleta.Remove(_context.Atleta.Find(id));
+        _context.Juiz.Remove(_context.Juiz.Find(id));
         _context.SaveChanges();
 
         return RedirectToAction("Index");

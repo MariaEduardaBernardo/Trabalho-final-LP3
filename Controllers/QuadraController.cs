@@ -3,29 +3,29 @@ using Interclasse.Models;
 
 namespace Interclasse.Controllers;
 
-public class AtletaController : Controller 
+public class QuadraController : Controller 
 {
     private readonly InterclasseContext _context;
 
-    public AtletaController(InterclasseContext context)
+    public QuadraController(InterclasseContext context)
     {
         _context = context;
     }
     public IActionResult Index()
     {
-        return View(_context.Atleta);
+        return View(_context.Quadra);
     }
 
     public IActionResult Show(int id)
     {
-        Atleta atleta = _context.Atleta.Find(id);
+        Quadra quadra = _context.Quadra.Find(id);
 
-        if(atleta == null)
+        if(quadra == null)
         {
             return NotFound();
         }
 
-        return View(atleta);
+        return View(quadra);
     }
 
     [HttpGet]
@@ -35,14 +35,14 @@ public class AtletaController : Controller
     }
 
     [HttpPost]
-    public IActionResult Cadastrar(Atleta atleta)
+    public IActionResult Cadastrar(Quadra quadra)
     {
         if(!ModelState.IsValid) 
         {
-            return View(atleta);
+            return View(quadra);
         }
 
-        _context.Atleta.Add(atleta);
+        _context.Quadra.Add(quadra);
         _context.SaveChanges();
         return RedirectToAction("Index");
     }
@@ -50,45 +50,45 @@ public class AtletaController : Controller
     [HttpGet]
     public IActionResult Update(int id)
     {
-        Atleta atleta = _context.Atleta.Find(id);
+        Quadra quadra = _context.Quadra.Find(id);
 
-        if(atleta == null)
+        if(quadra == null)
         {
             return NotFound();
         }
 
-        return View(atleta);
+        return View(quadra);
     }
 
     [HttpPost]
-    public IActionResult Update(Atleta atleta, int id)
+    public IActionResult Update(Quadra quadra, int id)
     {
         if(!ModelState.IsValid) 
         {
-            return View(atleta);
+            return View(quadra);
         }
 
-        Atleta updateAtleta = _context.Atleta.Find(atleta.Id);
+        Quadra updateQuadra = _context.quadra.Find(quadra.Id);
+    
+        updateQuadra.Numero = quadra.Numero;
+        updateQuadra.Esporte = quadra.esporte;
         
-        updateAtleta.Nome = atleta.Nome;
-        updateAtleta.Esporte = atleta.Esporte;
-        updateAtleta.Numero = atleta.Numero;
 
-        _context.Atleta.Update(updateAtleta);
+        _context.Quadra.Update(updateQuadra);
         _context.SaveChanges();
         return RedirectToAction("Index");
     }
 
     public IActionResult Delete(int id)
     {
-        Atleta atleta = _context.Atleta.Find(id);
+        Quadra quadra = _context.Quadra.Find(id);
 
-        if(atleta == null)
+        if(quadra == null)
         {
             return NotFound();
         }
         
-        _context.Atleta.Remove(_context.Atleta.Find(id));
+        _context.Quadra.Remove(_context.Quadra.Find(id));
         _context.SaveChanges();
 
         return RedirectToAction("Index");
