@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using Interclasse.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<InterclasseContext>(options => options.UseMySQL("server=localhost; database=interclasse; user=root; password=estudante;"));
 
 var app = builder.Build();
 
