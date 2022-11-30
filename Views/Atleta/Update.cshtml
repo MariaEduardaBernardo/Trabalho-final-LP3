@@ -1,0 +1,29 @@
+@model Interclasse.Models.Atleta
+
+@{
+    ViewData["Title"] = "Atualizar dados do atleta";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Utilize o formulário para atualizar os dados do atleta</p>
+
+<form class="form" asp-controller="Atleta" asp-action="Update" asp-route-id="@Model.Id" method="POST">
+    
+    <label for="Nome">Nome</label>
+    <input type="text" id="Nome" value="@Model.Nome" name="Nome" asp-for="@Model.Nome">
+    <span asp-validation-for="@Model.Nome" class="text-danger"></span>
+
+    <label for="Esporte">Esporte</label>
+    <select name="Esporte" id="Esporte" value="@Model.Esporte" asp-for="@Model.Esporte">
+        <option value="Volei">Volei</option>
+        <option value="Futebol">Futebol</option>
+        <option value="Basquete">Basquete</option>
+    </select>
+    <span asp-validation-for="@Model.Esporte" class="text-danger"></span>
+
+    <label for="Numero">Numero</label>
+    <input type="number" id="Numero" value="@Model.Numero" name="Numero" asp-for="@Model.Numero">
+    <span asp-validation-for="@Model.Numero" class="text-danger"></span>
+
+    <input class="submit" type="submit" value="Atualizar">
+</form>
